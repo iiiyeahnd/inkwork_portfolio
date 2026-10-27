@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inkwork Sketchbook</title>
+<meta name="description" content="A black-ink sketchbook portfolio of lineart and character sketches.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DM+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="inkonly" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="discrete" tableValues="0 1"/>
+        <feFuncG type="discrete" tableValues="0 1"/>
+        <feFuncB type="discrete" tableValues="0 1"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+</svg>
+
+<canvas id="ink" aria-hidden="true"></canvas>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="k">線</span><span>inkwork</span></a>
+    <nav aria-label="Sections">
+      <a href="#desk">Desk</a><a href="#log">Ink Log</a><a href="#about">About</a>
+    </nav>
+    <div class="tools">
+      <button class="tbtn" id="pen" aria-pressed="true" title="Toggle the pen trail">Pen</button>
+      <button class="tbtn" id="theme" aria-label="Switch light or dark" title="Switch light or dark">◐</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-label="Introduction">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow mono">Lineart &middot; character sketches</p>
+      <h1 id="h1">
+        <span>Line</span>
+        <span class="by">by</span>
+        <span class="outline" id="outline">Line</span>
+      </h1>
+      <p class="lede">A sketchbook of black ink, flat grey tone and faces that look back. Drag the sheets around the desk, scrub through the ink log, and leave a few marks on the page while you are at it.</p>
+      <div class="cta">
+        <a class="btn" href="#desk">Open the desk</a>
+        <a class="btn alt" href="#log">Scrub the ink log</a>
+      </div>
+      <p class="hero-meta mono"><span id="meta-count">11 sheets</span><span id="meta-range">Oct 2024 to Nov 2025</span><span>Move to draw &middot; click to splatter</span></p>
+    </div>
+    <div class="collage" id="collage" aria-hidden="true">
+      <figure class="sheet c1" data-depth="14"><div class="frame"><img src="img/04.webp" alt=""></div></figure>
+      <figure class="sheet c2" data-depth="-10"><div class="frame"><img src="img/09.webp" alt=""></div></figure>
+      <figure class="sheet c3" data-depth="22"><div class="frame"><img src="img/07.webp" alt=""></div></figure>
+      <div class="stamp">線<br>画</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="desk">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>The Desk</h2>
+        <p>Every sheet is loose. Drag them around, shuffle the pile, or click one to look closer.</p>
+      </div>
+      <div class="chips" role="group" aria-label="Filter and arrange">
+        <button class="chip" data-f="all" aria-pressed="true">All</button>
+        <button class="chip" data-f="ink" aria-pressed="false">Ink</button>
+        <button class="chip" data-f="colour" aria-pressed="false">Colour</button>
+        <button class="chip" data-f="sketch" aria-pressed="false">Sketch</button>
+        <button class="chip act" id="shuffle">Shuffle</button>
+        <button class="chip act" id="tidy">Tidy</button>
+      </div>
+    </div>
+    <div class="desk"><div class="desk-grid" id="deskGrid"></div></div>
+    <p class="desk-foot mono" id="deskCount"></p>
+  </div>
+</section>
+
+<section class="sec" id="log">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Ink Log</h2>
+        <p>Every dated sheet sits on a real calendar. Drag the nib along the ruler and watch the line work change over time.</p>
+      </div>
+    </div>
+    <div class="log-top">
+      <span class="mono" id="logCount" style="color:var(--soft)"></span>
+      <button class="chip act" id="play">Play through</button>
+    </div>
+    <div class="ruler" id="ruler" role="slider" tabindex="0" aria-label="Time scrubber" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1">
+      <div class="line"></div>
+      <div id="ticks"></div>
+      <div id="marks"></div>
+      <div class="nib" id="nib">
+        <svg viewBox="0 0 26 50" aria-hidden="true"><path d="M13 49 L2 22 Q1 8 13 1 Q25 8 24 22 Z" fill="var(--ink)"/><circle cx="13" cy="23" r="3" fill="var(--paper)"/><path d="M13 26 V46" stroke="var(--paper)" stroke-width="1.6"/></svg>
+      </div>
+    </div>
+    <div class="log-grid">
+      <div class="log-stage"><figure class="sheet" id="logSheet"><div class="frame"><img id="logImg" alt=""></div></figure></div>
+      <div class="log-info">
+        <p class="num mono" id="logNum"></p>
+        <p class="date" id="logDate"></p>
+        <h3 id="logTitle"></h3>
+        <p class="note" id="logNote"></p>
+        <p class="delta mono" id="logDelta"></p>
+        <button class="btn" id="logOpen">Look closer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap about">
+    <p class="big-k" aria-hidden="true">線</p>
+    <div>
+      <div class="sec-head" style="margin-bottom:22px"><h2>About</h2></div>
+      <p>I draw faces. Mostly black ink, heavy shadows, loose hair and a flat grey tone where the light drops off. Most pieces start as a rough sketch and get inked digitally, with a few colour studies in between.</p>
+      <p>If you want to talk about a commission, a collaboration or just a character you have in mind, say hello.</p>
+      <div class="contact">
+        <div class="crow"><code>your@email.com</code><button class="tbtn" data-copy="your@email.com">Copy</button></div>
+        <div class="crow"><code>@yourhandle</code><button class="tbtn" data-copy="@yourhandle">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap mono"><span>&copy; 2026 Your Name</span><span>All artwork is hand drawn</span></div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>
+  <div class="lb-bar">
+    <div class="lb-title"><b id="lbT"></b><span class="mono" id="lbD"></span></div>
+    <div class="lb-tools">
+      <button class="tbtn" id="lbNeg" aria-pressed="false">Negative</button>
+      <button class="tbtn" id="lbInk" aria-pressed="false" title="Drops the grey tone and keeps only the black ink">Ink only</button>
+      <button class="tbtn" id="lbX">Close</button>
+    </div>
+  </div>
+  <div class="lb-stage">
+    <button class="lb-nav prev" id="lbPrev" aria-label="Previous sheet">&larr;</button>
+    <div class="lb-img-wrap"><img id="lbImg" alt=""></div>
+    <button class="lb-nav next" id="lbNext" aria-label="Next sheet">&rarr;</button>
+  </div>
+  <p class="lb-note" id="lbNote"></p>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
