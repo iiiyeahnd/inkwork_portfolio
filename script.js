@@ -46,27 +46,38 @@
   var penBtn = $('#pen'), penHint = $('#penHint'), penToast = $('#penToast'), toastT = 0;
   var coarse = window.matchMedia('(pointer: coarse)').matches;
   penBtn.setAttribute('aria-pressed', 'false');
-  function hideHint() {
-    if (penHint) penHint.hidden = true;
-    if (penBtn.parentNode) penBtn.parentNode.classList.remove('hint');
+  /* The "Try me!" arrow shows whenever the pen is off and the visitor is at the top of the page. */
+  function updateHint() {
+    var show = !penOn && window.scrollY < 200;
+    if (penHint) penHint.hidden = !show;
+    if (penBtn.parentNode) penBtn.parentNode.classList.toggle('hint', show);
   }
   function setPen(on) {
     penOn = on;
     penBtn.setAttribute('aria-pressed', String(on));
     /* On touch screens a drag normally scrolls the page, so drawing mode turns scrolling off. */
     root.classList.toggle('drawing', on);
+    touches = {}; scrollMode = false;
     if (penToast) {
       clearTimeout(toastT);
       if (on && coarse) {
-        penToast.textContent = 'Drawing mode is on. Tap Pen again to scroll.';
+        penToast.textContent = 'One finger draws, two fingers scroll.';
         penToast.hidden = false;
-        toastT = setTimeout(function () { penToast.hidden = true; }, 3800);
+        toastT = setTimeout(function () { penToast.hidden = true; }, 4500);
       } else penToast.hidden = true;
     }
-    hideHint();
+    updateHint();
   }
-  penBtn.addEventListener('click', function () { setPen(!penOn); });
-  addEventListener('scroll', function () { if (window.scrollY > 600) hideHint(); }, { passive: true });
+  /* Touch toggles on pointerup, so the button always responds right after a drawing gesture. */
+  var penTouched = false;
+  penBtn.addEventListener('pointerup', function (e) {
+    if (e.pointerType !== 'touch') return;
+    penTouched = true; setTimeout(function () { penTouched = false; }, 500);
+    setPen(!penOn);
+  });
+  penBtn.addEventListener('click', function () { if (penTouched) return; setPen(!penOn); });
+  addEventListener('scroll', updateHint, { passive: true });
+  updateHint();
 
   /* ---------- hero: outline flood + collage parallax ---------- */
   var outline = $('#outline');
@@ -427,8 +438,20 @@
   var segs = [], blobs = [], last = null, raf = 0;
   var LIFE = 1500, BLIFE = 2800;
   function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+  var touches = {}, scrollMode = false;
+  function touchCount() { return Object.keys(touches).length; }
   addEventListener('pointermove', function (e) {
     if (!penOn) return;
+    if (e.pointerType === 'touch') {
+      var prev = touches[e.pointerId];
+      if (!prev) return;
+      var dy = e.clientY - prev.y;
+      prev.x = e.clientX; prev.y = e.clientY;
+      var n = touchCount();
+      /* Two fingers: scroll the page by hand, since drawing mode turns native scrolling off. */
+      if (n >= 2) { scrollMode = true; last = null; tap = null; window.scrollBy({ top: -dy / n, left: 0, behavior: 'instant' }); return; }
+      if (scrollMode) return;
+    }
     var t = performance.now();
     if (last && t - last.t < 140) {
       var dx = e.clientX - last.x, dy = e.clientY - last.y, dist = Math.hypot(dx, dy);
@@ -457,6 +480,10 @@
   var tap = null;
   addEventListener('pointerdown', function (e) {
     if (!penOn) return;
+    if (e.pointerType === 'touch') {
+      touches[e.pointerId] = { x: e.clientX, y: e.clientY };
+      if (touchCount() >= 2) { scrollMode = true; last = null; tap = null; return; }
+    }
     if (e.target.closest && e.target.closest('a,button,input,.card,.ruler,.lb')) return;
     /* Touch: a drag draws a line, only a quick tap splatters. Mouse: click splatters. */
     if (e.pointerType === 'touch') { tap = { x: e.clientX, y: e.clientY, t: performance.now() }; return; }
@@ -464,6 +491,8 @@
   });
   function endTouch(e, cancelled) {
     if (e.pointerType !== 'touch') return;
+    delete touches[e.pointerId];
+    if (!touchCount()) scrollMode = false;
     last = null;
     if (tap && !cancelled && penOn && Math.hypot(e.clientX - tap.x, e.clientY - tap.y) < 8 && performance.now() - tap.t < 450) splat(tap.x, tap.y);
     tap = null;

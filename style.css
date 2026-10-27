@@ -324,7 +324,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 }
 @keyframes nudge { from { transform: translateY(0); } to { transform: translateY(-9px); } }
 @media (prefers-reduced-motion: reduce) { .pen-hint-in { animation: none; } }
-html.drawing, html.drawing body { touch-action: none; overscroll-behavior: none; }
+html.drawing, html.drawing body { touch-action: none; overscroll-behavior: none; scroll-behavior: auto; }
 .pen-toast {
   position: fixed; left: 50%; transform: translateX(-50%); z-index: 150; max-width: calc(100% - 32px);
   bottom: calc(18px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--paper);
