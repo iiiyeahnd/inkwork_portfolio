@@ -1,17 +1,26 @@
 (function () {
   var PIECES = [
-    { src: 'img/01.webp', title: 'Spring Smile', date: '2025-11-06', tags: ['ink'], alt: 'Smiling character with short tousled hair and a hoop earring, framed by small flowers', note: 'Hoop earring, clover flowers and a hand-ruled frame.' },
-    { src: 'img/02.webp', title: 'Curls and Glasses', date: '', tags: ['ink'], alt: 'Character with long curly hair and rectangular glasses wearing a hoodie', note: 'Curly hair built from thick and thin brush strokes.' },
-    { src: 'img/03.webp', title: 'Cuffs and Scissors', date: '2025-03-11', tags: ['ink'], alt: 'Character with sharp eyes, dark lips and layered ear cuffs, with a tiny scissors necklace', note: 'Ear cuffs, a tiny scissors necklace and big areas of solid black.' },
-    { src: 'img/04.webp', title: 'Dance with Flames', date: '2024-10-31', tags: ['ink'], alt: 'Grinning character with wild long hair beside a vertical line of Japanese text', note: 'The caption reads 炎と踊る準備はできてるか: are you ready to dance with the flames?' },
-    { src: 'img/05.webp', title: 'Beast Sketch', date: '', tags: ['sketch'], alt: 'Line sketch of a bearded character with round ears and raised arms', note: 'A loose line sketch with no tone yet.' },
-    { src: 'img/06.webp', title: 'Mirror Check', date: '2025-02-22', tags: ['ink'], alt: 'Character with round glasses and a moustache holding up a phone, bracelets on the wrist', note: 'Flat grey tone on the shirt, bracelets on the phone hand.' },
-    { src: 'img/07.webp', title: 'Storm Study', date: '2025-02-22', tags: ['ink'], alt: 'Character with voluminous wavy hair glaring over a high collar', note: 'Big swirling hair shapes with grey tone tucked into the curls.' },
-    { src: 'img/08.webp', title: 'Fresh Fade', date: '', tags: ['colour'], alt: 'Profile of a character with an undercut fade and a hoop earring in front of big red lettering', note: 'A colour study with a hard black-to-brown fade.' },
-    { src: 'img/09.webp', title: 'Stitched Up', date: '2024-11-05', tags: ['ink'], alt: 'Character with stitched scars across mouth and neck and ink splatter along the bottom', note: 'Stitches, grey tone and ink spatter along the bottom edge.' },
-    { src: 'img/10.webp', title: 'Diner Horns', date: '', tags: ['colour'], alt: 'Purple-haired character with horns and pointed ears in a brown jacket, in a checkered diner', note: 'A colour piece set on a posterized diner photo.' },
-    { src: 'img/11.webp', title: 'Okra Break', date: '', tags: ['colour'], alt: 'Character with a green okra pod hanging from the mouth and another okra in a speech frame', note: 'One green spot colour on black and white linework.' }
+    { src: 'works/Spring Smile.png', title: 'Spring Smile', date: '2025-11-06', tags: ['ink'], alt: 'Shows a spring vibe with sparkling eyes.', note: 'Flowers that show a spring vibe along with the yukata to really make it pop.' },
+    { src: 'works/Curls.png', title: 'Curls and Glasses', date: '2024-6-14', tags: ['ink'], alt: 'Character with long curly hair and rectangular glasses wearing a hoodie', note: 'This is my first practice artwork utilizing this artstyle.' },
+    { src: 'works/CutHere.png', title: 'Cut Here', date: '2025-03-11', tags: ['ink'], alt: 'Character with sharp eyes, dark lips and layered ear cuffs, with a tiny scissors necklace', note: 'A better lip, Hair, Eye shape and shade practice using different brush strokes.' },
+    { src: 'works/Dance with Flames.png', title: 'Dance with Flames', date: '2024-10-31', tags: ['ink'], alt: 'The caption reads 炎と踊る準備はできてるか: are you ready to dance with the flames?', note: 'This artwork made use of ' },
+    { src: 'works/HIKARUOC.png', title: 'Beast Sketch', date: '2026-06-30', tags: ['sketch'], alt: 'Line sketch of a bearded character with round ears and raised arms', note: 'A loose line sketch with no tone yet.' },
+    { src: 'works/SelfInkwork.png', title: 'Self Inkwork', date: '2025-02-22', tags: ['ink'], alt: 'This is a self Inkwork with myself on a mirror as reference', note: 'Flat grey tone on the shirt and a practice for real people to art references.' },
+    { src: 'works/wave study.png', title: 'Wave Study', date: '2025-02-22', tags: ['ink'], alt: 'Character with voluminous wavy hair glaring over a high collar', note: 'Big swirling hair shapes with grey tone tucked into the curls.' },
+    { src: 'works/REN.png', title: 'Color Blend Study:REN', date: '2025-08-15', tags: ['colour'], alt: 'A art portrait of one my favourite artist, Ren.', note: 'A colour study with a hard black-to-brown fade.' },
+    { src: 'works/Snitch2.png', title: 'Stitched Up', date: '2024-11-05', tags: ['ink'], alt: 'Character with stitched scars across mouth and neck and ink splatter along the bottom', note: 'Another Linear art with different brush sizes.' },
+    { src: 'works/SNITCHPOSE.png', title: 'Diner Horns', date: '2026-07-19', tags: ['colour'], alt: 'Purple-haired character with horns and pointed ears in a brown jacket, in a checkered diner', note: 'This combines photo manipulation and artwork layer colors' },
+    { src: 'works/vom.png', title: 'Okra Break', date: '2026-08-14', tags: ['colour'], alt: 'Character with a green okra pod hanging from the mouth and another okra in a speech frame', note: 'One green spot colour on black and white linework.' },
+    { src: 'works/FreshInk.png', title: 'Fresh Ink', date: '2025-04-01', tags: ['colour'], alt: 'A personification of a character from Undertale.', note: 'This makes use of both line work and color blending at once.' },
+    { src: 'works/takayan.png', title: 'Bearded Takayan', date: '2024-03-30', tags: ['colour'], alt: 'Inspired from another artist, Takayan who sings rap songs while wearing sailor clothes', note: 'This is my first artwork with full on anime style color and shading.' },
+    { src: 'works/TheDahlia.jpg', title: 'The Dahlia', date: '2025-11-11', tags: ['ink'], alt: 'The Dahlia. From the hit game Honkai Star Rail', note: 'It got complicated fully making a new lotus design so it is from another lotus reference.' },
+    { src: 'works/Ray.png', title: 'Simple Coloring', date: '2023-11-17', tags: ['colour'], alt: 'An OC from my old characters when I was planning to make my own manga', note: 'It was slightly unfinished as I lost my files before fully gettiong to finish like the chain colours.' },
   ];
+
+  var SPEEDPAINTS = [
+      { title: 'TheDahlia', src: 'works/TheDahlia_Speedpaint.mp4', poster: 'works/TheDahlia.jpg', length: '1:21', note: 'My first speedpaint after discovering Krita has one.' }
+  ];
+
   var MON = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -20,7 +29,7 @@
   function rand(a, b) { return a + Math.random() * (b - a); }
 
   /* ---------- hero meta ---------- */
-  var dates = PIECES.filter(function (p) { return p.date; }).map(function (p) { return p.date; }).sort();
+  var dates = PIECES.filter(function (p) { return p.date; }).map(function (p) { return p.date; }).sort(function (a, b) { return utc(a) - utc(b); });
   $('#meta-count').textContent = PIECES.length + ' sheets';
   (function () {
     var f = dates[0].split('-').map(Number), l = dates[dates.length - 1].split('-').map(Number);
@@ -28,15 +37,16 @@
   })();
 
   /* ---------- theme + pen toggles ---------- */
-  var root = document.documentElement;
+  var root = document.documentElement;  
   $('#theme').addEventListener('click', function () {
     var cur = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
   });
-  var penOn = true;
+  var penOn = false;
   var penBtn = $('#pen');
+  penBtn.setAttribute('aria-pressed', String(penOn));
   penBtn.addEventListener('click', function () { penOn = !penOn; penBtn.setAttribute('aria-pressed', String(penOn)); });
-  if (reduce) { penOn = false; penBtn.setAttribute('aria-pressed', 'false'); penBtn.disabled = true; }
+  if (reduce) { penOn = true; penBtn.setAttribute('aria-pressed', 'true'); penBtn.disabled = false; }
 
   /* ---------- hero: outline flood + collage parallax ---------- */
   var outline = $('#outline');
@@ -149,34 +159,48 @@
   /* ---------- ink log ---------- */
   var dated = PIECES.map(function (p, i) { return { p: p, i: i }; })
     .filter(function (o) { return o.p.date; })
-    .sort(function (a, b) { return a.p.date < b.p.date ? -1 : a.p.date > b.p.date ? 1 : a.i - b.i; });
-  var D0 = Date.UTC(2024, 9, 1), D1 = Date.UTC(2025, 11, 1);
+    .sort(function (a, b) { return utc(a.p.date) - utc(b.p.date) || a.i - b.i; });
+  /* The ruler fits itself to the earliest and latest dates in PIECES. */
+  var dFirst = new Date(utc(dated[0].p.date)), dLast = new Date(utc(dated[dated.length - 1].p.date));
+  var D0 = Date.UTC(dFirst.getUTCFullYear(), dFirst.getUTCMonth(), 1);
+  var D1 = Date.UTC(dLast.getUTCFullYear(), dLast.getUTCMonth() + 1, 1);
+  var totalMonths = (dLast.getUTCFullYear() - dFirst.getUTCFullYear()) * 12 + dLast.getUTCMonth() - dFirst.getUTCMonth() + 1;
   function pct(ms) { return (ms - D0) / (D1 - D0) * 100; }
-  var pos = [];
-  dated.forEach(function (o, k) {
-    var x = pct(utc(o.p.date));
-    if (k > 0 && x - pos[k - 1] < 3.4) x = pos[k - 1] + 3.4;
-    pos.push(x);
-  });
+  var raw = dated.map(function (o) { return pct(utc(o.p.date)); });
+  var pos = raw.slice();
   var ticksEl = $('#ticks'), marksEl = $('#marks');
-  for (var m = 0; m <= 14; m++) {
-    var yy = 2024 + Math.floor((9 + m) / 12), mm = (9 + m) % 12;
-    var t = document.createElement('div');
-    t.className = 'tick' + (mm === 0 || m === 0 ? ' year' : '') + (m % 2 ? ' alt' : '');
-    t.style.left = pct(Date.UTC(yy, mm, 1)) + '%';
-    if (m < 14) t.innerHTML = '<i>' + MON[mm] + ((mm === 0 || m === 0) ? ' ' + yy : '') + '</i>';
-    ticksEl.appendChild(t);
-  }
-  var marks = pos.map(function (x) {
-    var d = document.createElement('div');
-    d.className = 'mark'; d.style.left = x + '%';
-    marksEl.appendChild(d); return d;
+  var marks = dated.map(function () {
+    var d = document.createElement('div'); d.className = 'mark'; marksEl.appendChild(d); return d;
   });
   var nib = $('#nib'), ruler = $('#ruler');
   var cur = -1;
   dated.forEach(function (o) { var im = new Image(); im.src = o.p.src; });
   $('#logCount').textContent = dated.length + ' dated sheets';
   ruler.setAttribute('aria-valuemax', dated.length);
+
+  /* Places marks (keeping neighbours at least a marker apart) and month ticks for the current width. */
+  function layout() {
+    var Wd = ruler.clientWidth || 600, n = dated.length;
+    var gap = Math.min(22, Wd / (n + 1));
+    var xs = raw.map(function (r) { return r * Wd / 100; });
+    for (var k = 1; k < n; k++) xs[k] = Math.max(xs[k], xs[k - 1] + gap);
+    if (xs[n - 1] > Wd) xs[n - 1] = Wd;
+    for (k = n - 2; k >= 0; k--) xs[k] = Math.min(xs[k], xs[k + 1] - gap);
+    pos = xs.map(function (x) { return Math.max(0, x) / Wd * 100; });
+    marks.forEach(function (mk, j) { mk.style.left = pos[j] + '%'; });
+    ticksEl.innerHTML = '';
+    var monthPx = Wd / totalMonths, step = 12;
+    [1, 2, 3, 4, 6, 12].some(function (s) { if (monthPx * s >= 46) { step = s; return true; } return false; });
+    for (var m = 0; m <= totalMonths; m++) {
+      var dt = new Date(Date.UTC(dFirst.getUTCFullYear(), dFirst.getUTCMonth() + m, 1));
+      var mm = dt.getUTCMonth(), yy = dt.getUTCFullYear();
+      var t = document.createElement('div');
+      t.className = 'tick' + (mm === 0 ? ' year' : '');
+      t.style.left = pct(dt.getTime()) + '%';
+      if (mm % step === 0) t.innerHTML = '<i>' + MON[mm] + (mm === 0 ? '<br>' + yy : '') + '</i>';
+      ticksEl.appendChild(t);
+    }
+  }
 
   function show(k) {
     var o = dated[k], p = o.p;
@@ -234,7 +258,8 @@
     }, 1700);
   });
   $('#logOpen').addEventListener('click', function () { openLB(dated[cur].i); });
-  setIdx(0); snap();
+  setIdx(0); layout(); snap();
+  addEventListener('resize', function () { layout(); if (!scrubbing) snap(); });
 
   /* ---------- lightbox ---------- */
   var lb = $('#lb'), lbImg = $('#lbImg'), lbIdx = 0, lastFocus = null;
@@ -290,6 +315,84 @@
       } catch (err) { fallback(); }
     });
   });
+
+  /* ---------- speedpaint ---------- */
+  (function () {
+    var box = $('#speed');
+    if (!box) return;
+    var list = $('#spList'), video = $('#spVideo'), yt = $('#spYt'), ctl = $('#spCtl'),
+        big = $('#spBig'), seek = $('#spSeek'), time = $('#spTime'), playBtn = $('#spPlay'), cap = $('#spCap');
+    if (!SPEEDPAINTS.length) { $('#spPlayer').hidden = true; list.hidden = true; $('#spEmpty').hidden = false; return; }
+    function clock(t) { if (!isFinite(t)) t = 0; var m = Math.floor(t / 60), s = Math.floor(t % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
+    var items = SPEEDPAINTS.map(function (it, i) {
+      var b = document.createElement('button');
+      b.className = 'sp-item'; b.type = 'button';
+      b.innerHTML = '<span class="th">' + (it.poster ? '<img src="' + it.poster + '" alt="" loading="lazy">' : '▶') + '</span>' +
+        '<span class="tx"><b></b><span class="mono"></span></span>';
+      b.querySelector('b').textContent = it.title;
+      b.querySelector('.mono').textContent = it.length || '';
+      b.addEventListener('click', function () { choose(i); });
+      list.appendChild(b); return b;
+    });
+    function setPlaying(on) {
+      playBtn.textContent = on ? 'Pause' : 'Play';
+      playBtn.setAttribute('aria-label', on ? 'Pause' : 'Play');
+      big.hidden = on;
+    }
+    function choose(i) {
+      var it = SPEEDPAINTS[i]; curSp = i;
+      items.forEach(function (b, j) { b.classList.toggle('on', j === i); b.setAttribute('aria-current', String(j === i)); });
+      video.pause(); setPlaying(false);
+      if (it.yt) {
+        video.hidden = true; ctl.hidden = true; big.hidden = true; yt.hidden = false;
+        yt.src = 'https://www.youtube-nocookie.com/embed/' + it.yt + '?rel=0';
+      } else {
+        yt.hidden = true; yt.src = 'about:blank'; video.hidden = false; ctl.hidden = false; big.hidden = false;
+        video.src = it.src; video.poster = it.poster || ''; video.load();
+        seek.value = 0; time.textContent = '0:00 / ' + (it.length || '0:00');
+      }
+      cap.textContent = it.note || '';
+    }
+    var curSp = 0;
+    function fail(why) {
+      var it = SPEEDPAINTS[curSp] || {};
+      console.error('Speedpaint could not play:', it.src, why || (video.error && (video.error.code + ' ' + video.error.message)) || '');
+      cap.textContent = 'This video could not be loaded right now.';
+      setPlaying(false); big.hidden = false;
+    }
+    function toggle() {
+      if (video.paused) {
+        var pr = video.play();
+        if (pr && pr.catch) pr.catch(function (err) { fail(err && err.name + ': ' + err.message); });
+      } else video.pause();
+    }
+    video.addEventListener('error', function () { fail(); });
+    big.addEventListener('click', toggle);
+    playBtn.addEventListener('click', toggle);
+    video.addEventListener('click', toggle);
+    video.addEventListener('play', function () { setPlaying(true); });
+    video.addEventListener('pause', function () { setPlaying(false); });
+    video.addEventListener('ended', function () { setPlaying(false); big.hidden = false; });
+    video.addEventListener('loadedmetadata', function () { time.textContent = '0:00 / ' + clock(video.duration); });
+    video.addEventListener('timeupdate', function () {
+      if (!video.duration) return;
+      seek.value = Math.round(video.currentTime / video.duration * 1000);
+      time.textContent = clock(video.currentTime) + ' / ' + clock(video.duration);
+    });
+    seek.addEventListener('input', function () { if (video.duration) video.currentTime = seek.value / 1000 * video.duration; });
+    document.querySelectorAll('#spSpeeds .chip').forEach(function (c) {
+      c.addEventListener('click', function () {
+        video.playbackRate = +c.dataset.s;
+        document.querySelectorAll('#spSpeeds .chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === c)); });
+      });
+    });
+    /* keep the chosen speed when a new video loads */
+    video.addEventListener('loadstart', function () {
+      var on = document.querySelector('#spSpeeds .chip[aria-pressed="true"]');
+      video.playbackRate = on ? +on.dataset.s : 1;
+    });
+    choose(0);
+  })();
 
   /* ---------- the pen: fading trail + ink splatter ---------- */
   if (reduce) { $('#ink').style.display = 'none'; return; }

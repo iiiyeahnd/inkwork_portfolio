@@ -34,7 +34,7 @@
   <div class="wrap">
     <a class="brand" href="#top"><span class="k">線</span><span>inkwork</span></a>
     <nav aria-label="Sections">
-      <a href="#desk">Desk</a><a href="#log">Ink Log</a><a href="#about">About</a>
+      <a href="#desk">Desk</a><a href="#log">Ink Log</a><a href="#speed">Speedpaint</a><a href="#about">About</a>
     </nav>
     <div class="tools">
       <button class="tbtn" id="pen" aria-pressed="true" title="Toggle the pen trail">Pen</button>
@@ -61,9 +61,9 @@
       <p class="hero-meta mono"><span id="meta-count">11 sheets</span><span id="meta-range">Oct 2024 to Nov 2025</span><span>Move to draw &middot; click to splatter</span></p>
     </div>
     <div class="collage" id="collage" aria-hidden="true">
-      <figure class="sheet c1" data-depth="14"><div class="frame"><img src="img/04.webp" alt=""></div></figure>
-      <figure class="sheet c2" data-depth="-10"><div class="frame"><img src="img/09.webp" alt=""></div></figure>
-      <figure class="sheet c3" data-depth="22"><div class="frame"><img src="img/07.webp" alt=""></div></figure>
+      <figure class="sheet c1" data-depth="14"><div class="frame"><img src="works/Dance%20with%20Flames.png" alt=""></div></figure>
+      <figure class="sheet c2" data-depth="-10"><div class="frame"><img src="works/Snitch2.png" alt=""></div></figure>
+      <figure class="sheet c3" data-depth="22"><div class="frame"><img src="works/wave%20study.png" alt=""></div></figure>
       <div class="stamp">線<br>画</div>
     </div>
   </div>
@@ -124,6 +124,42 @@
   </div>
 </section>
 
+<section class="sec" id="speed">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Speedpaint</h2>
+        <p>Watch a drawing come together from first line to last. Pick a piece from the reel.</p>
+      </div>
+      <div class="chips" id="spSpeeds" role="group" aria-label="Playback speed">
+        <button class="chip" data-s="1" aria-pressed="true">1x</button>
+        <button class="chip" data-s="2" aria-pressed="false">2x</button>
+        <button class="chip" data-s="4" aria-pressed="false">4x</button>
+      </div>
+    </div>
+    <div class="sp-grid">
+      <figure class="sheet sp-player" id="spPlayer">
+        <div class="frame sp-frame">
+          <video id="spVideo" playsinline preload="metadata"></video>
+          <iframe id="spYt" title="Speedpaint video" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen hidden></iframe>
+          <button class="sp-big" id="spBig" aria-label="Play speedpaint">&#9654;</button>
+        </div>
+        <div class="sp-ctl" id="spCtl">
+          <button class="tbtn" id="spPlay" aria-label="Play">Play</button>
+          <input type="range" id="spSeek" min="0" max="1000" value="0" aria-label="Seek through the video">
+          <span class="mono" id="spTime">0:00 / 0:00</span>
+        </div>
+        <figcaption><span class="t" id="spCap"></span></figcaption>
+      </figure>
+      <div class="sp-list" id="spList" aria-label="Speedpaint reel"></div>
+    </div>
+    <div class="sp-empty" id="spEmpty" hidden>
+      <p class="big">Reel is empty</p>
+      <p>Speedpaints are on the way.</p>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="about">
   <div class="wrap about">
     <p class="big-k" aria-hidden="true">線</p>
@@ -132,8 +168,8 @@
       <p>I draw faces. Mostly black ink, heavy shadows, loose hair and a flat grey tone where the light drops off. Most pieces start as a rough sketch and get inked digitally, with a few colour studies in between.</p>
       <p>If you want to talk about a commission, a collaboration or just a character you have in mind, say hello.</p>
       <div class="contact">
-        <div class="crow"><code>your@email.com</code><button class="tbtn" data-copy="your@email.com">Copy</button></div>
-        <div class="crow"><code>@yourhandle</code><button class="tbtn" data-copy="@yourhandle">Copy</button></div>
+        <div class="crow"><code>henry54645@gmail.com</code><button class="tbtn" data-copy="your@email.com">Copy</button></div>
+        <div class="crow"><code>@hendeerx</code><button class="tbtn" data-copy="@yourhandle">Copy</button></div>
       </div>
     </div>
   </div>
@@ -141,7 +177,7 @@
 </main>
 
 <footer>
-  <div class="wrap mono"><span>&copy; 2026 Your Name</span><span>All artwork is hand drawn</span></div>
+  <div class="wrap mono"><span>&copy; 2026 Ian Hendrix Bataller</span><span>All artwork is hand drawn</span></div>
 </footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>

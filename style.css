@@ -211,7 +211,6 @@ section { scroll-margin-top: 70px; }
   font-style: normal; font-family: var(--f-mono); font-size: 0.62rem; letter-spacing: 0.04em; color: var(--soft); white-space: nowrap;
 }
 .tick.year i { margin-top: 6px; color: var(--ink); font-weight: 500; }
-@media (max-width: 640px) { .tick.alt i { display: none; } }
 .mark {
   position: absolute; top: 86px; width: 18px; height: 18px; border-radius: 50%;
   transform: translate(-50%, -50%); background: var(--ink); border: 3px solid var(--paper);
@@ -270,3 +269,44 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 .lb-nav:hover { border-color: var(--accent); }
 @media (max-width: 560px) { .lb-nav { position: absolute; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); height: 44px; z-index: 2; } .lb-nav.prev { left: max(16px, env(safe-area-inset-left, 0px)); } .lb-nav.next { right: max(16px, env(safe-area-inset-right, 0px)); } }
 .lb-note { text-align: center; color: var(--soft); margin: 0; padding: 14px 60px 16px; min-height: 3.4rem; }
+
+/* ---------- tick labels with a year line ---------- */
+.tick i { text-align: center; line-height: 1.25; }
+
+/* ---------- speedpaint ---------- */
+.sp-grid { display: grid; gap: clamp(22px, 4vw, 44px); align-items: start; }
+@media (min-width: 900px) { .sp-grid { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); } }
+.sp-player { margin: 0; padding-bottom: 10px; }
+.sp-frame { aspect-ratio: 16 / 9; background: #0c0c12; display: grid; place-items: center; }
+.sp-frame video, .sp-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: contain; background: #0c0c12; cursor: pointer; }
+.sp-big {
+  position: relative; z-index: 2; width: 72px; height: 72px; background: var(--accent); color: var(--on-accent);
+  border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); font-size: 1.6rem; padding: 0 0 0 4px;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.sp-big:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+.sp-ctl { display: flex; align-items: center; gap: 12px; padding: 12px 2px 4px; color: var(--sheet-ink); }
+.sp-ctl .tbtn { background: var(--sheet); color: var(--sheet-ink); border-color: var(--sheet-ink); min-width: 70px; }
+.sp-ctl .mono { font-size: 0.68rem; color: #55556a; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sp-ctl input[type="range"] { flex: 1; min-width: 0; height: 24px; background: transparent; accent-color: #6a2bd9; cursor: ew-resize; -webkit-appearance: none; appearance: none; }
+.sp-ctl input[type="range"]::-webkit-slider-runnable-track { height: 4px; background: var(--sheet-ink); }
+.sp-ctl input[type="range"]::-moz-range-track { height: 4px; background: var(--sheet-ink); }
+.sp-ctl input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; background: #6a2bd9; border: 3px solid var(--sheet-ink); border-radius: 0; }
+.sp-ctl input[type="range"]::-moz-range-thumb { width: 12px; height: 12px; background: #6a2bd9; border: 3px solid var(--sheet-ink); border-radius: 0; }
+.sp-player figcaption .t { font-weight: 400; font-size: 0.92rem; color: #2a2a35; }
+.sp-list { display: grid; gap: 12px; }
+.sp-item {
+  display: grid; grid-template-columns: 78px minmax(0, 1fr); gap: 14px; align-items: center; text-align: left;
+  background: var(--paper); border: 2px solid var(--ink); padding: 8px;
+}
+.sp-item:hover { border-color: var(--accent); }
+.sp-item.on { background: var(--ink); color: var(--paper); box-shadow: 5px 5px 0 var(--accent); }
+.sp-item .th { aspect-ratio: 1; background: var(--tone); display: grid; place-items: center; overflow: hidden; font-size: 1.2rem; }
+.sp-item .th img { width: 100%; height: 100%; object-fit: cover; }
+.sp-item .tx { display: grid; gap: 2px; min-width: 0; }
+.sp-item .tx b { font-size: 1rem; line-height: 1.25; overflow-wrap: anywhere; }
+.sp-item .tx .mono { opacity: 0.7; }
+.sp-empty { border: 3px dashed var(--ink); padding: clamp(28px, 6vw, 60px); text-align: center; }
+.sp-empty .big { font-family: var(--f-display); font-size: clamp(1.6rem, 5vw, 2.6rem); margin: 0 0 6px; text-transform: uppercase; }
+.sp-empty p { margin: 0; color: var(--soft); }
+[hidden] { display: none !important; }
