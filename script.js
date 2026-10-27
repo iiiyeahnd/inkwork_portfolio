@@ -43,10 +43,30 @@
     root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
   });
   var penOn = false;
-  var penBtn = $('#pen');
-  penBtn.setAttribute('aria-pressed', String(penOn));
-  penBtn.addEventListener('click', function () { penOn = !penOn; penBtn.setAttribute('aria-pressed', String(penOn)); });
-  if (reduce) { penOn = true; penBtn.setAttribute('aria-pressed', 'true'); penBtn.disabled = false; }
+  var penBtn = $('#pen'), penHint = $('#penHint'), penToast = $('#penToast'), toastT = 0;
+  var coarse = window.matchMedia('(pointer: coarse)').matches;
+  penBtn.setAttribute('aria-pressed', 'false');
+  function hideHint() {
+    if (penHint) penHint.hidden = true;
+    if (penBtn.parentNode) penBtn.parentNode.classList.remove('hint');
+  }
+  function setPen(on) {
+    penOn = on;
+    penBtn.setAttribute('aria-pressed', String(on));
+    /* On touch screens a drag normally scrolls the page, so drawing mode turns scrolling off. */
+    root.classList.toggle('drawing', on);
+    if (penToast) {
+      clearTimeout(toastT);
+      if (on && coarse) {
+        penToast.textContent = 'Drawing mode is on. Tap Pen again to scroll.';
+        penToast.hidden = false;
+        toastT = setTimeout(function () { penToast.hidden = true; }, 3800);
+      } else penToast.hidden = true;
+    }
+    hideHint();
+  }
+  penBtn.addEventListener('click', function () { setPen(!penOn); });
+  addEventListener('scroll', function () { if (window.scrollY > 600) hideHint(); }, { passive: true });
 
   /* ---------- hero: outline flood + collage parallax ---------- */
   var outline = $('#outline');
@@ -395,7 +415,6 @@
   })();
 
   /* ---------- the pen: fading trail + ink splatter ---------- */
-  if (reduce) { $('#ink').style.display = 'none'; return; }
   var cv = $('#ink'), ctx = cv.getContext('2d');
   var W = 0, H = 0;
   function size() {
@@ -409,7 +428,7 @@
   var LIFE = 1500, BLIFE = 2800;
   function kick() { if (!raf) raf = requestAnimationFrame(loop); }
   addEventListener('pointermove', function (e) {
-    if (!penOn || e.pointerType === 'touch') return;
+    if (!penOn) return;
     var t = performance.now();
     if (last && t - last.t < 140) {
       var dx = e.clientX - last.x, dy = e.clientY - last.y, dist = Math.hypot(dx, dy);
@@ -425,18 +444,32 @@
     kick();
   });
   document.addEventListener('pointerleave', function () { last = null; });
-  addEventListener('pointerdown', function (e) {
-    if (!penOn) return;
-    if (e.target.closest && e.target.closest('a,button,input,.card,.ruler,.lb')) return;
+  function splat(x, y) {
     var t = performance.now();
-    blobs.push({ x: e.clientX, y: e.clientY, r: rand(5, 9), t: t });
+    blobs.push({ x: x, y: y, r: rand(5, 9), t: t });
     var n = Math.round(rand(6, 11));
     for (var i = 0; i < n; i++) {
       var a = rand(0, Math.PI * 2), d = rand(16, 78);
-      blobs.push({ x: e.clientX + Math.cos(a) * d, y: e.clientY + Math.sin(a) * d, r: rand(1, 4.2) * (1 - d / 140), t: t + rand(0, 90) });
+      blobs.push({ x: x + Math.cos(a) * d, y: y + Math.sin(a) * d, r: rand(1, 4.2) * (1 - d / 140), t: t + rand(0, 90) });
     }
     kick();
+  }
+  var tap = null;
+  addEventListener('pointerdown', function (e) {
+    if (!penOn) return;
+    if (e.target.closest && e.target.closest('a,button,input,.card,.ruler,.lb')) return;
+    /* Touch: a drag draws a line, only a quick tap splatters. Mouse: click splatters. */
+    if (e.pointerType === 'touch') { tap = { x: e.clientX, y: e.clientY, t: performance.now() }; return; }
+    splat(e.clientX, e.clientY);
   });
+  function endTouch(e, cancelled) {
+    if (e.pointerType !== 'touch') return;
+    last = null;
+    if (tap && !cancelled && penOn && Math.hypot(e.clientX - tap.x, e.clientY - tap.y) < 8 && performance.now() - tap.t < 450) splat(tap.x, tap.y);
+    tap = null;
+  }
+  addEventListener('pointerup', function (e) { endTouch(e, false); });
+  addEventListener('pointercancel', function (e) { endTouch(e, true); });
   function loop(now) {
     raf = 0;
     ctx.clearRect(0, 0, W, H);

@@ -37,7 +37,15 @@
       <a href="#desk">Desk</a><a href="#log">Ink Log</a><a href="#speed">Speedpaint</a><a href="#about">About</a>
     </nav>
     <div class="tools">
-      <button class="tbtn" id="pen" aria-pressed="true" title="Toggle the pen trail">Pen</button>
+      <span class="pen-wrap hint">
+        <button class="tbtn" id="pen" aria-pressed="false" title="Toggle the pen trail">Pen</button>
+        <span class="pen-hint" id="penHint" aria-hidden="true">
+          <span class="pen-hint-in">
+            <svg viewBox="0 0 60 70" width="46" height="54" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M27 66 C17 52 40 42 30 28 C26 21 32 14 33 8"/><path d="M21 21 L33 7 L45 20"/></svg>
+            <b>Try me!</b>
+          </span>
+        </span>
+      </span>
       <button class="tbtn" id="theme" aria-label="Switch light or dark" title="Switch light or dark">◐</button>
     </div>
   </div>
@@ -168,8 +176,8 @@
       <p>I draw faces. Mostly black ink, heavy shadows, loose hair and a flat grey tone where the light drops off. Most pieces start as a rough sketch and get inked digitally, with a few colour studies in between.</p>
       <p>If you want to talk about a commission, a collaboration or just a character you have in mind, say hello.</p>
       <div class="contact">
-        <div class="crow"><code>henry54645@gmail.com</code><button class="tbtn" data-copy="your@email.com">Copy</button></div>
-        <div class="crow"><code>@hendeerx</code><button class="tbtn" data-copy="@yourhandle">Copy</button></div>
+        <div class="crow"><code>henry54645@gmail.com</code><button class="tbtn" data-copy="henry54645@gmail.com">Copy</button></div>
+        <div class="crow"><code>@hendeerx</code><button class="tbtn" data-copy="@hendeerx">Copy</button></div>
       </div>
     </div>
   </div>
@@ -179,6 +187,8 @@
 <footer>
   <div class="wrap mono"><span>&copy; 2026 Ian Hendrix Bataller</span><span>All artwork is hand drawn</span></div>
 </footer>
+
+<div class="pen-toast" id="penToast" role="status" hidden></div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>
   <div class="lb-bar">
